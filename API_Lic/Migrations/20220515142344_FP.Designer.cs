@@ -4,14 +4,16 @@ using API_Lic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API_Lic.Migrations
 {
     [DbContext(typeof(API_LicContext))]
-    partial class API_LicContextModelSnapshot : ModelSnapshot
+    [Migration("20220515142344_FP")]
+    partial class FP
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,16 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace Restaurant_Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Meniu : ContentPage
+    public partial class AddFel : ContentPage
     {
-        public Meniu()
+        public AddFel()
         {
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            carouselView.ItemsSource = await App.Database.GetFeluriAsync();
+            carouselView.ItemsSource = await App.Database.GetProduseAsync();
         }
     }
 }

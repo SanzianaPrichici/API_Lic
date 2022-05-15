@@ -22,6 +22,14 @@ namespace Restaurant_Client.Data
             Console.WriteLine(@"Am ajuns in baza de date sa afisez userii");
             return restService.RefreshDataAsyncUSR();
         }
+        public Task<List<Fel_m>> GetFeluriAsync()
+        {
+            return restService.RefreshDataAsyncFEL();
+        }
+        public Task<List<Produs>> GetProduseAsync()
+        {
+            return restService.RefreshDataAsyncPROD();
+        }
         public Task<string> SaveClientAsync(Client item, bool isNewItem = true)
         {
             Console.WriteLine(@"Am ajuns in baza de date");
@@ -31,6 +39,15 @@ namespace Restaurant_Client.Data
         {
             return restService.SaveUserAsync(item, isNewItem);
         }
+        public Task SaveFeluriAsync(Fel_m item, bool isNewItem = true)
+        {
+            Console.WriteLine(@"Am ajuns in baza de date");
+            return restService.SaveFelAsync(item, isNewItem);
+        }
+        public Task SaveProduseAsync(Produs item, bool isNewItem = true)
+        {
+            return restService.SaveProdusAsync(item, isNewItem);
+        }
         public Task DeleteClientAsync(Client item)
         {
             return restService.DeleteClientAsync(item.ID);
@@ -38,6 +55,14 @@ namespace Restaurant_Client.Data
         public Task DeleteUserAsync(User item)
         {
             return restService.DeleteUserAsync(item.ID);
+        }
+        public Task DeleteFeluriAsync(Fel_m item)
+        {
+            return restService.DeleteFelAsync(item.ID);
+        }
+        public Task DeleteProduseAsync(Produs item)
+        {
+            return restService.DeleteProdusAsync(item.ID);
         }
     }
 }

@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Restaurant_Client.Models;
 
 namespace Restaurant_Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Meniu : ContentPage
+    public partial class ListaFeluri : ContentPage
     {
-        public Meniu()
+        public ListaFeluri()
         {
             InitializeComponent();
         }
-        protected override async void OnAppearing()
+        async void OnShopListAddedClicked(object sender, EventArgs e)
         {
-            base.OnAppearing();
-            carouselView.ItemsSource = await App.Database.GetFeluriAsync();
+            await Navigation.PushAsync(new AddFel
+            {
+                BindingContext = new Fel_m()
+            });
         }
     }
 }

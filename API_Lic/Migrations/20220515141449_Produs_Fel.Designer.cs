@@ -4,14 +4,16 @@ using API_Lic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API_Lic.Migrations
 {
     [DbContext(typeof(API_LicContext))]
-    partial class API_LicContextModelSnapshot : ModelSnapshot
+    [Migration("20220515141449_Produs_Fel")]
+    partial class Produs_Fel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,24 +91,6 @@ namespace API_Lic.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Fel");
-                });
-
-            modelBuilder.Entity("API_Lic.Models.Fel_Prod", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Fel_Prod");
                 });
 
             modelBuilder.Entity("API_Lic.Models.Produs", b =>
