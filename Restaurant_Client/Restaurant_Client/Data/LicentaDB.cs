@@ -28,6 +28,7 @@ namespace Restaurant_Client.Data
         }
         public Task<List<Produs>> GetProduseAsync()
         {
+            Console.Write(@"Al doilea pas in LicentaDB");
             return restService.RefreshDataAsyncPROD();
         }
         public Task<string> SaveClientAsync(Client item, bool isNewItem = true)

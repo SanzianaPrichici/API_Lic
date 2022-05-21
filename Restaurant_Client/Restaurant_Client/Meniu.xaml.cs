@@ -19,7 +19,8 @@ namespace Restaurant_Client
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            carouselView.ItemsSource = await App.Database.GetFeluriAsync();
+            Console.Write(@"Primul pas pe pagina");
+            carouselView.ItemsSource = await App.Database.GetProduseAsync();
         }
     }
 }

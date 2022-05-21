@@ -14,8 +14,9 @@ namespace Restaurant_Client
 
             Database = new LicentaDB(new RestService());
             //MainPage = new NavigationPage(new Login());
-            MainPage = new AddFel();
+            //MainPage = new AddFel();
             //MainPage = new AddProdus();
+            MainPage = new Meniu();
         }
 
         protected override void OnStart()

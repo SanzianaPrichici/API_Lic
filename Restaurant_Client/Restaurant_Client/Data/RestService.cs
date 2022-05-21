@@ -11,10 +11,10 @@ namespace Restaurant_Client.Data
     public class RestService : IRestService
     {
         readonly HttpClient client;
-        readonly string RestUrlCLI = "https://192.168.8.107:45455/api/Clients/";
-        readonly string RestUrlUSR = "https://192.168.8.107:45455/api/Users/";
-        readonly string RestUrlFEL = "https://192.168.8.107:45455/api/Fels/";
-        readonly string RestUrlPROD = "https://192.168.8.107:45455/api/Produs/";
+        readonly string RestUrlCLI = "https://192.168.1.160:45455/api/Clients/";
+        readonly string RestUrlUSR = "https://192.168.1.160:45455/api/Users/";
+        readonly string RestUrlFEL = "https://192.168.1.160:45455/api/Fels/";
+        readonly string RestUrlPROD = "https://192.168.1.160:45455/api/Produs/";
         public List<Client> Clients { get; private set; }
         public List<User> Users { get; private set; }
         public List<Fel_m> Feluri { get; private set; }
@@ -98,6 +98,7 @@ namespace Restaurant_Client.Data
                 HttpResponseMessage response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
+                    Console.WriteLine(@"Am ajuns la produse");
                     string content = await response.Content.ReadAsStringAsync();
                     Produse = JsonConvert.DeserializeObject<List<Produs>>(content);
                 }
