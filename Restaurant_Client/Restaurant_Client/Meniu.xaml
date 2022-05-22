@@ -4,6 +4,8 @@
              x:Class="Restaurant_Client.Meniu">
     <ContentPage.Content>
         <StackLayout>
+            <Button Text="Sortare dupa pret" Clicked="SortareMeniupret"/>
+            <Button Text="Sortare In stoc" />
             <CarouselView  x:Name="carouselView">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
@@ -16,22 +18,18 @@
                        HorizontalOptions="Center"
                        VerticalOptions="CenterAndExpand">
                                 <StackLayout>
-                                    <Label Text="{Binding Denumire}"
+                                    <Label Text="{Binding Nume}"
                                FontAttributes="Bold"
                                FontSize="Large"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-                                    <Label Text="{Binding Pret}"
+                                    <Label Text="{Binding Durata}"
                                FontAttributes="Italic"
                                HorizontalOptions="Center" 
                                MaxLines="5" />
-                                    <Label Text="{Binding Cantitate}"
+                                    <Label Text="{Binding InStoc}"
                                HorizontalOptions="Center" />
-                                    <Label Text="{Binding Alergen}"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center"
-                               MaxLines="5"
-                               LineBreakMode="TailTruncation" />
+                                    <Button Text="Adauga in comanda" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

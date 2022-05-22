@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Restaurant_Client.Models;
 
 namespace Restaurant_Client
 {
@@ -20,7 +21,12 @@ namespace Restaurant_Client
         {
             base.OnAppearing();
             Console.Write(@"Primul pas pe pagina");
-            carouselView.ItemsSource = await App.Database.GetProduseAsync();
+            carouselView.ItemsSource = await App.Database.GetFeluriAsync();
+        }
+        async void SortareMeniupret(object sender, EventArgs e)
+        {
+            List<Fel_m> L = (List<Fel_m>)carouselView.ItemsSource;
+            List<Fel_m> SortedList = L.OrderBy(o => o.Durata).ToList();
         }
     }
 }
