@@ -11,10 +11,10 @@ namespace Restaurant_Client.Data
     public class RestService : IRestService
     {
         readonly HttpClient client;
-        readonly string RestUrlCLI = "https://192.168.1.160:45455/api/Clients/";
-        readonly string RestUrlUSR = "https://192.168.1.160:45455/api/Users/";
-        readonly string RestUrlFEL = "https://192.168.1.160:45455/api/Fels/";
-        readonly string RestUrlPROD = "https://192.168.1.160:45455/api/Produs/";
+        readonly string RestUrlCLI = "https://192.168.0.100:45455/api/Clients/";
+        readonly string RestUrlUSR = "https://192.168.0.100:45455/api/Users/";
+        readonly string RestUrlFEL = "https://192.168.0.100:45455/api/Fels/";
+        readonly string RestUrlPROD = "https://192.168.0.100:45455/api/Produs/";
         public List<Client> Clients { get; private set; }
         public List<User> Users { get; private set; }
         public List<Fel_m> Feluri { get; private set; }
