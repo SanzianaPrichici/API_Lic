@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Restaurant_Client.Prezentare_Fel">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Nume}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+            <Label Text="{Binding Durata}"
+                               FontAttributes="Italic"
+                               HorizontalOptions="Center" 
+                               MaxLines="5" />
+            <Label Text="{Binding InStoc}"
+                               HorizontalOptions="Center" />
+            <Label Text="{Binding Pret}"
+                               HorizontalOptions="Center" />
+            
+            <Button Text="Adauga in comanda" Clicked="AdaugareCos"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

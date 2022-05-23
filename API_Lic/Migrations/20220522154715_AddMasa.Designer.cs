@@ -4,19 +4,21 @@ using API_Lic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API_Lic.Migrations
 {
     [DbContext(typeof(API_LicContext))]
-    partial class API_LicContextModelSnapshot : ModelSnapshot
+    [Migration("20220522154715_AddMasa")]
+    partial class AddMasa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.17")
+                .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("APILicenta.Models.Client", b =>
@@ -70,27 +72,6 @@ namespace API_Lic.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("API_Lic.Models.Comanda", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ID_CLI")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_Masa")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Suma")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Comanda");
-                });
-
             modelBuilder.Entity("API_Lic.Models.Fel", b =>
                 {
                     b.Property<int>("ID")
@@ -133,24 +114,6 @@ namespace API_Lic.Migrations
                     b.ToTable("Fel_Prod");
                 });
 
-            modelBuilder.Entity("API_Lic.Models.Masa", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Dispo")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Nr_pers")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Masa");
-                });
-
             modelBuilder.Entity("API_Lic.Models.Produs", b =>
                 {
                     b.Property<int>("ID")
@@ -173,27 +136,6 @@ namespace API_Lic.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Produs");
-                });
-
-            modelBuilder.Entity("API_Lic.Models.Rezervare", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Cant")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_Com")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_Fel")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Rezervare");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,16 +15,39 @@ namespace Restaurant_Client.Data
         readonly string RestUrlUSR = "https://192.168.0.100:45455/api/Users/";
         readonly string RestUrlFEL = "https://192.168.0.100:45455/api/Fels/";
         readonly string RestUrlPROD = "https://192.168.0.100:45455/api/Produs/";
+        readonly string RestUrlMASA = "https://192.168.0.100:45455/api/Masas/";
         public List<Client> Clients { get; private set; }
         public List<User> Users { get; private set; }
         public List<Fel_m> Feluri { get; private set; }
         public List<Produs> Produse { get; private set; }
+        public List<Masa> Mese { get; private set; }
         public RestService()
         {
             var httpClientHandler = new HttpClientHandler();
             httpClientHandler.ServerCertificateCustomValidationCallback =
             (message, cert, chain, errors) => { return true; };
             client = new HttpClient(httpClientHandler);
+        }
+        public async Task<List<Masa>> RefreshDataAsyncMASA()
+        {
+            Console.Write("am ajuns la rest service");
+            Mese = new List<Masa>();
+            Uri uri = new Uri(string.Format(RestUrlMASA, string.Empty));
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Console.Write(response.IsSuccessStatusCode.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Mese = JsonConvert.DeserializeObject<List<Masa>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(@"Eroare afisare Mese", ex.Message);
+            }
+            return Mese;
         }
         //Afisare lista clienti
         public async Task<List<Client>> RefreshDataAsyncCLI()
@@ -46,6 +69,10 @@ namespace Restaurant_Client.Data
             }
             return Clients;
         }
+        //public async Task<List<Produs>> Products_Sorted()
+        //{
+         //   Produse = await RefreshDataAsyncPROD();
+        //}
         //Afisare lista useri
         public async Task<List<User>> RefreshDataAsyncUSR()
         {
@@ -300,5 +327,7 @@ namespace Restaurant_Client.Data
                 Console.WriteLine(@"Produsul nu poate fi sters", ex.Message);
             }
         }
+        //Afisare Mese
+        
     }
 }

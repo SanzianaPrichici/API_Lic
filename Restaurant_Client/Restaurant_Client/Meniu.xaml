@@ -5,8 +5,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Sortare dupa pret" Clicked="SortareMeniupret"/>
-            <Button Text="Sortare In stoc" />
-            <CarouselView  x:Name="carouselView">
+            <Button Text="Sortare In stoc" Clicked="SortareMeniuinstoc"/>
+            <CarouselView  x:Name="carouselView" Loop="False" CurrentItemChanged="OnCurrentItemChanged">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -29,14 +29,18 @@
                                MaxLines="5" />
                                     <Label Text="{Binding InStoc}"
                                HorizontalOptions="Center" />
-                                    <Button Text="Adauga in comanda" />
+                                    <Label Text="{Binding Pret}"
+                               HorizontalOptions="Center" />
+
+                                    <Button x:Name="Buton1"  Text="Vizualizeaza" Clicked="DetaliiFel" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Picker Title="Meniu" />
+            <Stepper x:Name="xCant" Minimum="1" Maximum="10" Increment="1" ValueChanged="IncreaseLabel" HorizontalOptions="Center"/>
+            <Label x:Name="StepperValue" HorizontalOptions="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

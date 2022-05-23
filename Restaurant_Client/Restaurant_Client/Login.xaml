@@ -4,8 +4,8 @@
              x:Class="Restaurant_Client.Login">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Username" />
-            <Entry Placeholder="Parola" IsPassword="True" />
+            <Entry x:Name="txtusername" Placeholder="Username" />
+            <Entry x:Name="txtpassword" Placeholder="Parola" IsPassword="True" />
             <Button Text="Login!" Clicked="OnLoginClicked" />
             <Button Text="Intregistrare" Clicked="OnInregClicked" BackgroundColor="Transparent"/>
         </StackLayout>

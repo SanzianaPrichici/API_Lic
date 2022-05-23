@@ -24,5 +24,11 @@ namespace API_Lic.Data
         public DbSet<API_Lic.Models.Fel> Fel { get; set; }
 
         public DbSet<API_Lic.Models.Fel_Prod> Fel_Prod { get; set; }
+
+        public DbSet<API_Lic.Models.Comanda> Comanda { get; set; }
+
+        public DbSet<API_Lic.Models.Masa> Masa { get; set; }
+
+        public DbSet<API_Lic.Models.Rezervare> Rezervare { get; set; }
     }
 }

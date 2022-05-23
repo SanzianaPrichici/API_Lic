@@ -24,5 +24,6 @@ namespace Restaurant_Client.Data
         Task<List<Produs>> RefreshDataAsyncPROD();
         Task SaveProdusAsync(Produs item, bool isNewItem);
         Task DeleteProdusAsync(int id);
+        Task<List<Masa>> RefreshDataAsyncMASA();
     }
 }

@@ -16,6 +16,7 @@ namespace Restaurant_Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
         public Login()
         {
@@ -30,7 +31,35 @@ namespace Restaurant_Client
         }
         async void OnLoginClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NavigationPage(new Meniu()));
+            var User = new User()
+            {
+                Username = txtusername.Text,
+                Parola = txtpassword.Text
+            };
+            var isValid = await CorectUser(User);
+            Console.WriteLine(isValid.ToString());
+            if (isValid)
+            {
+                App.IsUserLoggedIn = true;
+                Navigation.InsertPageBefore(new Meniu(), this);
+                await Navigation.PopAsync();
+                //await Navigation.PushAsync(new NavigationPage(new Meniu()));
+            }
+            else
+            {
+                await DisplayAlert("USER INCORECT", "Introduceti corect userul", "OK");
+                txtpassword.Text = txtusername.Text = string.Empty;
+            }
+        }
+        async Task<bool> CorectUser(User user)
+        {
+            List<User> Useri = await App.Database.GetUsersAsync();
+            foreach(User u in Useri)
+            {
+                if (u.Username == user.Username && u.Parola == user.Parola)
+                    return true;
+            }
+            return false;
         }
     }
 }

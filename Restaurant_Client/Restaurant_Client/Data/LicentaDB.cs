@@ -65,5 +65,9 @@ namespace Restaurant_Client.Data
         {
             return restService.DeleteProdusAsync(item.ID);
         }
+        public Task<List<Masa>> GetMeseAsync()
+        {
+            return restService.RefreshDataAsyncMASA();
+        }
     }
 }
