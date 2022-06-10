@@ -16,12 +16,12 @@ namespace Restaurant_Client
         public TableAssign()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
-        async protected override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            listaMese.ItemsSource = await App.Database.GetProduseAsync();
-            NavigationPage.SetHasNavigationBar(this, false);
+            Console.WriteLine(App.UserID.ToString());
         }
         async void CautaMese(object sender, EventArgs e)
         {
@@ -43,6 +43,18 @@ namespace Restaurant_Client
             }
             listaMese.ItemsSource = null;
             listaMese.ItemsSource = Copie;
+        }
+        async void OnTableSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Masa m = (Masa)e.SelectedItem;
+            Console.WriteLine(m.ID);
+            Console.WriteLine(App.UserID.ToString());
+            Comanda c = new Comanda();
+            c.ID_Masa = m.ID;
+            c.Suma = 0;
+            c.ID_CLI = App.UserID;
+            string s = await App.Database.SaveCOMANDAAsync(c);
+            Console.WriteLine(s);
         }
     }
 }

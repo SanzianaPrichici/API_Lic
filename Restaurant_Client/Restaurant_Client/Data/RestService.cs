@@ -11,16 +11,18 @@ namespace Restaurant_Client.Data
     public class RestService : IRestService
     {
         readonly HttpClient client;
-        readonly string RestUrlCLI = "https://192.168.0.100:45455/api/Clients/";
-        readonly string RestUrlUSR = "https://192.168.0.100:45455/api/Users/";
-        readonly string RestUrlFEL = "https://192.168.0.100:45455/api/Fels/";
-        readonly string RestUrlPROD = "https://192.168.0.100:45455/api/Produs/";
-        readonly string RestUrlMASA = "https://192.168.0.100:45455/api/Masas/";
+        readonly string RestUrlCLI = "https://api-lic.conveyor.cloud/api/Clients/";
+        readonly string RestUrlUSR = "https://api-lic.conveyor.cloud/api/Users/";
+        readonly string RestUrlFEL = "https://api-lic.conveyor.cloud/api/Fels/";
+        readonly string RestUrlPROD = "https://api-lic.conveyor.cloud/api/Produs/";
+        readonly string RestUrlMASA = "https://api-lic.conveyor.cloud/api/Masas/";
+        readonly string RestUrlCOM = "https://api-lic.conveyor.cloud/api/Comandas/";
         public List<Client> Clients { get; private set; }
         public List<User> Users { get; private set; }
         public List<Fel_m> Feluri { get; private set; }
         public List<Produs> Produse { get; private set; }
         public List<Masa> Mese { get; private set; }
+        public List<Comanda> Comenzi { get; private set; }
         public RestService()
         {
             var httpClientHandler = new HttpClientHandler();
@@ -135,6 +137,27 @@ namespace Restaurant_Client.Data
                 Console.WriteLine(@"Eroare afisare produse", ex.Message);
             }
             return Produse;
+        }
+        public async Task<List<Comanda>> RefreshDataAsyncCOM()
+        {
+            Console.Write("am ajuns la rest service");
+            Comenzi = new List<Comanda>();
+            Uri uri = new Uri(string.Format(RestUrlCOM, string.Empty));
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                Console.Write(response.IsSuccessStatusCode.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Comenzi = JsonConvert.DeserializeObject<List<Comanda>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(@"Eroare afisare Mese", ex.Message);
+            }
+            return Comenzi;
         }
         // Salvare Client
         public async Task<string> SaveClientAsync(Client item, bool isNewItem = true)
@@ -259,6 +282,40 @@ namespace Restaurant_Client.Data
                 Console.WriteLine(@"Userul nu poate fi salvat", ex.Message);
             }
         }
+        public async Task<string> SaveComandaAsync(Comanda item, bool isNewItem = true)
+        {
+            Console.WriteLine(@"Am ajuns la URLul pt COMENZI");
+            Uri uri = new Uri(string.Format(RestUrlCOM, string.Empty));
+            try
+            {
+                string json = JsonConvert.SerializeObject(item);
+                Console.WriteLine(json);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = null;
+                if (isNewItem)
+                {
+                    Console.WriteLine(@"Ceva POST.");
+                    response = await client.PostAsync(uri, content);
+                    Console.WriteLine(response.Headers.ToString());
+                }
+                else
+                {
+                    Console.WriteLine(@"Ceva PUT.");
+                    response = await client.PutAsync(uri, content);
+                }
+                Console.WriteLine(response.IsSuccessStatusCode.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(@"S-a salvat Comanda.");
+                    return response.Headers.Location.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(@"Userul nu poate fi salvat", ex.Message);
+            }
+            return null;
+        }
         //Stergere Client
         public async Task DeleteClientAsync(int id)
         {
@@ -327,7 +384,21 @@ namespace Restaurant_Client.Data
                 Console.WriteLine(@"Produsul nu poate fi sters", ex.Message);
             }
         }
-        //Afisare Mese
-        
+        public async Task DeleteComandaAsync(int id)
+        {
+            Uri uri = new Uri(string.Format(RestUrlCOM, id));
+            try
+            {
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(@"Produsul a fost sters");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(@"Produsul nu poate fi sters", ex.Message);
+            }
+        }
     }
 }

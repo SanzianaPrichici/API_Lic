@@ -8,6 +8,9 @@ namespace Restaurant_Client
     public partial class App : Application
     {
         public static bool IsUserLoggedIn { get; set; }
+        public static int UserID { get; set; }
+        public static int ComandaID { get; set; }
+
         public static LicentaDB Database { get; private set; }
         public App()
         {
@@ -15,7 +18,8 @@ namespace Restaurant_Client
             Database = new LicentaDB(new RestService());
             if (!IsUserLoggedIn)
             {
-                MainPage = new TableAssign();
+                //MainPage = new TableAssign();
+                MainPage = new NavigationPage( new Login());
             }
             else
             {

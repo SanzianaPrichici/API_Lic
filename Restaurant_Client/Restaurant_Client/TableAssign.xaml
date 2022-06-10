@@ -7,7 +7,7 @@
             <Label Text="Introduceti numarul de persoane pentru a va alege cea mai buna masa"/>
             <Entry x:Name="nrPers" Keyboard="Numeric" />
             <Button Text="Cauta masa" Clicked="CautaMese"/>
-            <ListView x:Name="listaMese" BackgroundColor="Beige">
+            <ListView x:Name="listaMese" BackgroundColor="Beige" ItemSelected="OnTableSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding ID}" />

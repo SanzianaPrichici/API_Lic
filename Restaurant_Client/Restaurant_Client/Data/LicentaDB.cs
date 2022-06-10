@@ -69,5 +69,18 @@ namespace Restaurant_Client.Data
         {
             return restService.RefreshDataAsyncMASA();
         }
+        public Task<List<Comanda>> GetComenziAsync()
+        {
+            return restService.RefreshDataAsyncCOM();
+        }
+        public Task<string> SaveCOMANDAAsync(Comanda item, bool isNewItem = true)
+        {
+            Console.WriteLine(@"Am ajuns in baza de date");
+            return restService.SaveComandaAsync(item, isNewItem);
+        }
+        public Task DeleteComenziAsync(Comanda item)
+        {
+            return restService.DeleteComandaAsync(item.ID);
+        }
     }
 }

@@ -40,9 +40,10 @@ namespace Restaurant_Client
             Console.WriteLine(isValid.ToString());
             if (isValid)
             {
+                Console.WriteLine("Userul este ok");
                 App.IsUserLoggedIn = true;
-                Navigation.InsertPageBefore(new Meniu(), this);
-                await Navigation.PopAsync();
+                Navigation.InsertPageBefore(new NavigationPage (new TableAssign()), this);
+                await Navigation.PopToRootAsync();
                 //await Navigation.PushAsync(new NavigationPage(new Meniu()));
             }
             else
@@ -57,7 +58,11 @@ namespace Restaurant_Client
             foreach(User u in Useri)
             {
                 if (u.Username == user.Username && u.Parola == user.Parola)
+                {
+                    App.UserID = u.ID;
+                    Console.WriteLine(App.UserID.ToString());
                     return true;
+                }
             }
             return false;
         }

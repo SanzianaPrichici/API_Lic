@@ -24,6 +24,11 @@ namespace Restaurant_Client.Data
         Task<List<Produs>> RefreshDataAsyncPROD();
         Task SaveProdusAsync(Produs item, bool isNewItem);
         Task DeleteProdusAsync(int id);
+        //Implementare mese
         Task<List<Masa>> RefreshDataAsyncMASA();
+        //Implementare comenzi
+        Task<List<Comanda>> RefreshDataAsyncCOM();
+        Task<string> SaveComandaAsync(Comanda item, bool isNewItem);
+        Task DeleteComandaAsync(int id);
     }
 }
