@@ -82,5 +82,25 @@ namespace Restaurant_Client.Data
         {
             return restService.DeleteComandaAsync(item.ID);
         }
+        public Task<Comanda> GetComanda(int id)
+        {
+            return restService.GetComandaById(id);
+        }
+        public Task SaveTable(Masa m, bool isNewItem = false)
+        {
+            return restService.SaveMasaAsync(m, isNewItem);
+        }
+        public Task DeleteRezAsync(Rezervare item)
+        {
+            return restService.DeleteRezAsync(item.ID);
+        }
+        public Task<List<Produs_cos>> GetCos(int id)
+        {
+            return restService.RefreshDataAsyncREZ(id);
+        }
+        public Task SaveRez(Rezervare r, bool isNewItem = true)
+        {
+            return restService.SaveRezAsync(r, isNewItem);
+        }
     }
 }

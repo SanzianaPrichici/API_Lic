@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Restaurant_Client.Models;
+using System.Text.RegularExpressions;
 
 namespace Restaurant_Client
 {
@@ -16,11 +17,16 @@ namespace Restaurant_Client
         public TableAssign()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+            
+            Shell.SetTabBarIsVisible(this, false);
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            NavigationPage.SetHasNavigationBar(this, false);
+            Shell.SetTabBarIsVisible(this, false);
+            Shell.SetNavBarIsVisible(this, false);
+            Shell.SetTabBarBackgroundColor(this, Color.Red);
             Console.WriteLine(App.UserID.ToString());
         }
         async void CautaMese(object sender, EventArgs e)
@@ -55,6 +61,18 @@ namespace Restaurant_Client
             c.ID_CLI = App.UserID;
             string s = await App.Database.SaveCOMANDAAsync(c);
             Console.WriteLine(s);
+            string nr = new string(s.Reverse().ToArray());
+            Regex re = new Regex(@"\d+");
+            var id = re.Match(nr);
+            string id2 = new string(id.ToString().Reverse().ToArray());
+            int id3 = Int32.Parse(id2);
+            Console.WriteLine(id3.ToString());
+            App.ComandaID = id3;
+            Console.WriteLine(App.ComandaID.ToString());
+            m.Dispo = false;
+            //await App.Database.SaveTable(m);
+            await Navigation.PushAsync(new Meniu());
+            Navigation.RemovePage(this);
         }
     }
 }

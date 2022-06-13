@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Restaurant_Client.Meniu">
-    <ContentPage.Content>
+             x:Class="Restaurant_Client.Meniu" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content NavigationPage.HasNavigationBar="false">
         <StackLayout>
             <Button Text="Sortare dupa pret" Clicked="SortareMeniupret"/>
             <Button Text="Sortare In stoc" Clicked="SortareMeniuinstoc"/>
@@ -31,8 +31,6 @@
                                HorizontalOptions="Center" />
                                     <Label Text="{Binding Pret}"
                                HorizontalOptions="Center" />
-
-                                    <Button x:Name="Buton1"  Text="Vizualizeaza" Clicked="DetaliiFel" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
@@ -41,6 +39,7 @@
             </CarouselView>
             <Stepper x:Name="xCant" Minimum="1" Maximum="10" Increment="1" ValueChanged="IncreaseLabel" HorizontalOptions="Center"/>
             <Label x:Name="StepperValue" HorizontalOptions="Center"/>
+            <Button x:Name="Buton1"  Text="Adauga la comanda" Clicked="AdaugareCos" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

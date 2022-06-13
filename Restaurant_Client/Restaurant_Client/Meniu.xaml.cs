@@ -16,15 +16,18 @@ namespace Restaurant_Client
         public Meniu()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+            Shell.SetTabBarIsVisible(this,false);
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            NavigationPage.SetHasNavigationBar(this, false);
             Console.WriteLine(@"User logat?");
             Console.WriteLine(App.IsUserLoggedIn.ToString());
             carouselView.ItemsSource = await App.Database.GetFeluriAsync();
             StepperValue.Text = xCant.Value.ToString();
+            NavigationPage.SetHasNavigationBar(this, false);
+            Shell.SetTabBarIsVisible(this, false);
         }
         void SortareMeniupret(object sender, EventArgs e)
         {
@@ -40,16 +43,18 @@ namespace Restaurant_Client
             carouselView.ItemsSource = null;
             carouselView.ItemsSource = SortedList;
         }
-         async protected void DetaliiFel(object sender, EventArgs a)
+         async protected void AdaugareCos(object sender, EventArgs a)
         {
+            //Comanda c = await App.Database.GetComanda(App.ComandaID);
+            //Console.WriteLine(c.ID_CLI.ToString());
             Fel_m f = (Fel_m)carouselView.CurrentItem;
-            Console.WriteLine(@"aici");
-            Console.WriteLine(f.ID.ToString());
-            Console.WriteLine(xCant.Value.ToString());
-            xCant.Value = 0;
-            StepperValue.Text= xCant.Value.ToString();
-            //Navigation.InsertPageBefore(new Prezentare_Fel() { BindingContext=f}, this);
-            //await Navigation.PopAsync();
+            Rezervare r = new Rezervare()
+            {   ID_Com=App.ComandaID,
+                ID_Fel=f.ID,
+                Cant = (int)xCant.Value
+            };
+            await App.Database.SaveRez(r);
+            await Navigation.PushAsync(new CosComanda());
         }
         void IncreaseLabel(object sender, ValueChangedEventArgs e)
         {
@@ -74,8 +79,6 @@ namespace Restaurant_Client
                 Console.WriteLine(ex.Source);
                 Console.WriteLine(ex.TargetSite);
             }
-            //Fel_m currentItem = e.CurrentItem as Fel_m;
-            //carouselView.CurrentItem = currentItem;
         }
     }
 }

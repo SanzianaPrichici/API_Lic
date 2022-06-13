@@ -10,11 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace Restaurant_Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Cos : ContentPage
+    public partial class CosComanda : ContentPage
     {
-        public Cos()
+        public CosComanda()
         {
             InitializeComponent();
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            listView.ItemsSource = await App.Database.GetCos(App.ComandaID);
         }
     }
 }
