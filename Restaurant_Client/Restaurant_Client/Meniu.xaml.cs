@@ -23,24 +23,23 @@ namespace Restaurant_Client
         {
             base.OnAppearing();
             Console.WriteLine(@"User logat?");
-            Console.WriteLine(App.IsUserLoggedIn.ToString());
+            Console.Write(App.IsUserLoggedIn.ToString());
             carouselView.ItemsSource = await App.Database.GetFeluriAsync();
             StepperValue.Text = xCant.Value.ToString();
-            NavigationPage.SetHasNavigationBar(this, false);
-            Shell.SetTabBarIsVisible(this, false);
         }
-        void SortareMeniupret(object sender, EventArgs e)
+        async void SortareMeniupret(object sender, EventArgs e)
         {
-            List<Fel_m> L = (List<Fel_m>)carouselView.ItemsSource;
+            List<Fel_m> L = await App.Database.GetFeluriAsync();
             List<Fel_m> SortedList = L.OrderBy(o => o.Pret).ToList();
             carouselView.ItemsSource = null;
             carouselView.ItemsSource = SortedList;
         }
-        void SortareMeniuinstoc(object sender, EventArgs e)
+        async void SortareMeniuinstoc(object sender, EventArgs e)
         {
-            List<Fel_m> L = (List<Fel_m>)carouselView.ItemsSource;
+            List<Fel_m> L = await App.Database.GetFeluriAsync();
             List<Fel_m> SortedList = L.OrderByDescending(o => o.InStoc).ToList();
-            carouselView.ItemsSource = null;
+            carouselView.ItemsSource = new List<Fel_m>();
+            //carouselView.CurrentItemChangedCommand=
             carouselView.ItemsSource = SortedList;
         }
          async protected void AdaugareCos(object sender, EventArgs a)
@@ -54,31 +53,35 @@ namespace Restaurant_Client
                 Cant = (int)xCant.Value
             };
             await App.Database.SaveRez(r);
-            await Navigation.PushAsync(new CosComanda());
+            await Navigation.PushModalAsync(new CosComanda());
+            //OnAppearing();
         }
         void IncreaseLabel(object sender, ValueChangedEventArgs e)
         {
             StepperValue.Text = xCant.Value.ToString();
         }
-        void OnCurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+        async void OnCurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
+            Console.WriteLine("Se apeleaza onitemchange");
             try
             {
-
+                //Fel_m x = (Fel_m)e.PreviousItem;
+                //Console.WriteLine(x.Nume.ToString());
                 Fel_m f = (Fel_m)e.CurrentItem;
                 Console.WriteLine(@"s-a schimbat");
                 Console.WriteLine(f.ID.ToString());
                 Console.WriteLine(f.Nume);
-                xCant.Value = 0;
-                StepperValue.Text = xCant.Value.ToString();
+                
             }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Data);
-                Console.WriteLine(ex.StackTrace);
-                Console.WriteLine(ex.Source);
-                Console.WriteLine(ex.TargetSite);
-            }
+            catch (Exception ex)
+            { Console.WriteLine(ex.Message); }
+            //    
+            //   Console.WriteLine(ex.StackTrace);
+            //   Console.WriteLine(ex.Source);
+            //   Console.WriteLine(ex.TargetSite);
+            //}
+            xCant.Value = 0;
+            StepperValue.Text = xCant.Value.ToString();
         }
     }
 }

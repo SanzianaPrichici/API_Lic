@@ -441,6 +441,8 @@ namespace Restaurant_Client.Data
                 else
                 {
                     Console.WriteLine(json.ToString());
+                    uri = new Uri(uri.ToString()+item.ID.ToString());
+                    Console.WriteLine(uri.ToString());
                     response = await client.PutAsync(uri, content);
                     Console.WriteLine("CEVA PUT pe mese");
                 }
@@ -456,7 +458,7 @@ namespace Restaurant_Client.Data
             }
             catch (Exception ex)
             {
-                Console.WriteLine(@"Clientul nu poate fi salvat", ex.Message);
+                Console.WriteLine(@"Masa nu poate fi salvata", ex.Message);
             }
         }
         public async Task<List<Produs_cos>> RefreshDataAsyncREZ(int ID_comanda)
@@ -516,7 +518,6 @@ namespace Restaurant_Client.Data
                 {
                     Console.WriteLine(json.ToString());
                     response = await client.PutAsync(uri, content);
-                    Console.WriteLine("CEVA PUT pe mese");
                 }
                 Console.WriteLine(response.IsSuccessStatusCode.ToString());
                 Console.WriteLine(response.Headers.ToString());
@@ -548,6 +549,27 @@ namespace Restaurant_Client.Data
             {
                 Console.WriteLine(@"Produsul nu poate fi sters", ex.Message);
             }
+        }
+        public async Task DeleteMasaAsync(int id)
+        {
+            Console.WriteLine(@"Incerc sa sterg masa");
+            String s = RestUrlMASA+id.ToString();
+            Console.WriteLine(s);
+            Uri uri = new Uri(s);
+            Console.WriteLine(uri.ToString());
+            //try
+            //{
+                HttpResponseMessage response = await client.DeleteAsync(uri);
+            Console.WriteLine(response.IsSuccessStatusCode.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(@"Masa a fost stearsa");
+                }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(@"Masa nu poate fi stearsa", ex.Message);
+            //}
         }
     }
 }

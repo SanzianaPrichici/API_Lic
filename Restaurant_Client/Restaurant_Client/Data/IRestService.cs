@@ -36,5 +36,6 @@ namespace Restaurant_Client.Data
         Task<List<Produs_cos>> RefreshDataAsyncREZ(int ID_comanda);
         Task SaveRezAsync(Rezervare item, bool isNewItem);
         Task DeleteRezAsync(int id);
+        Task DeleteMasaAsync(int id);
     }
 }

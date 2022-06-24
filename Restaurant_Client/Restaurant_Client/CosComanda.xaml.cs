@@ -15,11 +15,13 @@ namespace Restaurant_Client
         public CosComanda()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             listView.ItemsSource = await App.Database.GetCos(App.ComandaID);
+            await Navigation.PopModalAsync();
         }
     }
 }

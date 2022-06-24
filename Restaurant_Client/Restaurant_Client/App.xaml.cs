@@ -18,17 +18,14 @@ namespace Restaurant_Client
             Database = new LicentaDB(new RestService());
             if (!IsUserLoggedIn)
             {
-                //MainPage = new TableAssign();
+                //MainPage = new Login();
+                //MainPage = new Meniu();
                 MainPage = new NavigationPage( new Login());
             }
             else
             {
                 MainPage = new TableAssign();
             }
-            //MainPage = new NavigationPage(new Login());
-            //MainPage = new AddFel();
-            //MainPage = new AddProdus(); 
-            //MainPage = new Meniu();
         }
 
         protected override void OnStart()

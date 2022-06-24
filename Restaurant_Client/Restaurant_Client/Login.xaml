@@ -1,13 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Restaurant_Client.Login">
+             x:Class="Restaurant_Client.Login" BackgroundColor="#839192">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="txtusername" Placeholder="Username" />
-            <Entry x:Name="txtpassword" Placeholder="Parola" IsPassword="True" />
-            <Button Text="Login!" Clicked="OnLoginClicked" />
-            <Button Text="Intregistrare" Clicked="OnInregClicked" BackgroundColor="Transparent"/>
+            <Label FontSize="24"/>
+            <Label FontSize="24" Text="Bun venit!" HorizontalTextAlignment="Center" TextColor="#283747"/>
+            <Label FontSize="24" Text="Înregistrează-te pentru a putea comanda :)" HorizontalTextAlignment="Center" TextColor="#283747"/>
+            <Label FontSize="24"/>
+            <Entry x:Name="txtusername" Placeholder="Username" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Entry x:Name="txtpassword" Placeholder="Parola" IsPassword="True" PlaceholderColor="#F5B041" TextColor="DarkOrange"/>
+            <Label FontSize="16"/>
+            <Button Text="Login!" Clicked="OnLoginClicked" CornerRadius="10" TextColor="DarkOrange" BackgroundColor="#4D5656" BorderWidth="1" HorizontalOptions="CenterAndExpand"/>
+            <Label FontSize="12"/>
+            <Button Text="Intregistrare" Clicked="OnInregClicked" TextColor="DarkOrange" BackgroundColor="#4D5656" BorderWidth="1" HorizontalOptions="CenterAndExpand" CornerRadius="10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

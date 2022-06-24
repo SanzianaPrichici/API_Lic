@@ -1,45 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Restaurant_Client.Meniu" NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content NavigationPage.HasNavigationBar="false">
+             x:Class="Restaurant_Client.Meniu" NavigationPage.HasNavigationBar="False" BackgroundColor="#839192">
+    <ContentPage.Content>
         <StackLayout>
-            <Button Text="Sortare dupa pret" Clicked="SortareMeniupret"/>
-            <Button Text="Sortare In stoc" Clicked="SortareMeniuinstoc"/>
-            <CarouselView  x:Name="carouselView" Loop="False" CurrentItemChanged="OnCurrentItemChanged">
+            <Button Text="Sortare după preț" Clicked="SortareMeniupret" TextColor="#283747" HorizontalOptions="End"/>
+            <Button Text="Sortare produse în stoc" Clicked="SortareMeniuinstoc" TextColor="#283747" HorizontalOptions="EndAndExpand"/>
+            <CarouselView x:Name="carouselView" Loop="False" CurrentItemChanged="OnCurrentItemChanged">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                            <Frame HasShadow="True"
-                       BorderColor="DarkGray"
-                       CornerRadius="5"
-                       Margin="20"
-                       HeightRequest="300"
-                       HorizontalOptions="Center"
-                       VerticalOptions="CenterAndExpand">
+                            <Frame HasShadow="True" BorderColor="DarkGray" CornerRadius="5" Margin="20" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                                 <StackLayout>
-                                    <Label Text="{Binding Nume}"
-                               FontAttributes="Bold"
-                               FontSize="Large"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                                    <Label Text="{Binding Durata}"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center" 
-                               MaxLines="5" />
-                                    <Label Text="{Binding InStoc}"
-                               HorizontalOptions="Center" />
-                                    <Label Text="{Binding Pret}"
-                               HorizontalOptions="Center" />
+                                    <Label Text="{Binding Nume}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" TextColor="DarkOrange"/>
+                                    <Label Text="{Binding Durata}" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" />
+                                    <Label Text="{Binding InStoc}" HorizontalOptions="Center" />
+                                    <Label Text="{Binding Pret}" HorizontalOptions="Center" />
+                                    <Label Text="Conține alergeni" HorizontalOptions="Center" FontSize="10" VerticalOptions="End" TextColor="red"/>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Stepper x:Name="xCant" Minimum="1" Maximum="10" Increment="1" ValueChanged="IncreaseLabel" HorizontalOptions="Center"/>
-            <Label x:Name="StepperValue" HorizontalOptions="Center"/>
-            <Button x:Name="Buton1"  Text="Adauga la comanda" Clicked="AdaugareCos" />
+            <Stepper x:Name="xCant" Minimum="1" Maximum="10" Increment="1" ValueChanged="IncreaseLabel" HorizontalOptions="Center" />
+            <Label x:Name="StepperValue" HorizontalOptions="Center" TextColor="DarkOrange" FontAttributes="Bold" FontSize="20"/>
+            <Button x:Name="Buton1"  Text="Adaugă la comandă" Clicked="AdaugareCos" TextColor="#283747"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
