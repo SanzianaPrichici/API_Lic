@@ -64,6 +64,7 @@ namespace Restaurant_Client
             c.ID_Masa = m.ID;
             c.Suma = 0;
             c.ID_CLI = App.UserID;
+            c.Status = "IN_PREPARARE";
             string s = await App.Database.SaveCOMANDAAsync(c);
             string nr = new string(s.Reverse().ToArray());
             Regex re = new Regex(@"\d+");

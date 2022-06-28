@@ -389,18 +389,18 @@ namespace Restaurant_Client.Data
         }
         public async Task DeleteComandaAsync(int id)
         {
-            Uri uri = new Uri(string.Format(RestUrlCOM, id));
+            Uri uri = new Uri(RestUrlCOM + id.ToString());
             try
             {
                 HttpResponseMessage response = await client.DeleteAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine(@"Produsul a fost sters");
+                    Console.WriteLine(@"Comanda a fost sters");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(@"Produsul nu poate fi sters", ex.Message);
+                Console.WriteLine(@"Comanda nu poate fi sters", ex.Message);
             }
         }
         public async Task<Comanda> GetComandaById(int id)

@@ -53,8 +53,6 @@ namespace Restaurant_Client
                 Cant = (int)xCant.Value
             };
             await App.Database.SaveRez(r);
-            await Navigation.PushModalAsync(new CosComanda());
-            //OnAppearing();
         }
         void IncreaseLabel(object sender, ValueChangedEventArgs e)
         {
@@ -82,6 +80,20 @@ namespace Restaurant_Client
             //}
             xCant.Value = 0;
             StepperValue.Text = xCant.Value.ToString();
+        }
+
+        async private void VizualizareCos(object sender, EventArgs e)
+        {
+            Navigation.InsertPageBefore(new NavigationPage(new CosComanda()), this);
+            await Navigation.PopToRootAsync();
+        }
+        async private void Logout(object sender, EventArgs e)
+        {
+            App.IsUserLoggedIn = false;
+            Navigation.InsertPageBefore(new Login(), this);
+            await Navigation.PopAsync();
+            await App.Database.DeleteComenziAsync(App.ComandaID);
+            App.UserID = 0;
         }
     }
 }

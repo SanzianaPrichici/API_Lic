@@ -1,19 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Restaurant_Client.AddClient">
+             x:Class="Restaurant_Client.AddClient" NavigationPage.HasNavigationBar="False" BackgroundColor="#839192">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Inregistrati-va!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="txtnume" Placeholder="Nume"/>
-            <Entry x:Name="txtprenume" Placeholder="Prenume"/>
-            <Entry x:Name="txttlf" Placeholder="Telefon"/>
-            <Label Text="Data Nasterii" />
-            <DatePicker x:Name="txtdat" />
-            <Entry x:Name="txtadr" Placeholder="Adresa"/>
-            <Button Text="Salveaza" Clicked="OnButtonSave"/>
+            <Label FontSize="24"/>
+            <Label FontSize="24" Text="Înregistrați-vă!" HorizontalOptions="CenterAndExpand" TextColor="#283747"/>
+            <Label FontSize="24"/>
+            <Entry x:Name="txtnume" Placeholder="Nume" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Entry x:Name="txtprenume" Placeholder="Prenume" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Entry x:Name="txttlf" Placeholder="Telefon" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Label Text="Data Nasterii" TextColor="Orange" VerticalOptions="Center"/>
+            <DatePicker x:Name="txtdat" TextColor="DarkOrange"/>
+            <Entry x:Name="txtadr" Placeholder="Adresa" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Label Text="Bifați căsuța de mai jos dacă sunteți de acord cu stocarea și prelucrarea datelor personale" TextColor="LightPink" />
+            <CheckBox x:Name="GDPR" />
+            <Button Text="Salvează" Clicked="OnButtonSave" TextColor="DarkOrange" BackgroundColor="#4D5656" BorderWidth="1" HorizontalOptions="CenterAndExpand" CornerRadius="10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

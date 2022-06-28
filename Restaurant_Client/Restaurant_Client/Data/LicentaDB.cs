@@ -78,9 +78,9 @@ namespace Restaurant_Client.Data
             Console.WriteLine(@"Am ajuns in baza de date");
             return restService.SaveComandaAsync(item, isNewItem);
         }
-        public Task DeleteComenziAsync(Comanda item)
+        public Task DeleteComenziAsync(int id)
         {
-            return restService.DeleteComandaAsync(item.ID);
+            return restService.DeleteComandaAsync(id);
         }
         public Task<Comanda> GetComanda(int id)
         {

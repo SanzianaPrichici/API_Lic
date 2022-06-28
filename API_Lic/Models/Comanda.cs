@@ -11,5 +11,6 @@ namespace API_Lic.Models
         public int ID_CLI { get; set; }
         public int ID_Masa { get; set; }
         public int Suma { get; set; }
+        public string Status { get; set; }
     }
 }

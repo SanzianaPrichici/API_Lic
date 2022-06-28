@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Restaurant_Client.AddUser">
+             x:Class="Restaurant_Client.AddUser" NavigationPage.HasNavigationBar="False" BackgroundColor="#839192">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Inregistrati-va!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="txtmail" Placeholder="Mail" BindingContext="Mail"/>
-            <Entry x:Name="txtusr" Placeholder="User" BindingContext="Username"/>
-            <Entry x:Name="txtparola" Placeholder="Parola" BindingContext="Parola"/>
-            <Button Text="Salveaza" Clicked="OnButtonSave"/>
+            <Label FontSize="24"/>
+            <Label FontSize="24" Text="Înregistrați-vă!" HorizontalOptions="CenterAndExpand" TextColor="#283747"/>
+            <Label FontSize="24"/>
+            <Entry x:Name="txtmail" Placeholder="Mail" BindingContext="Mail" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Entry x:Name="txtusr" Placeholder="User" BindingContext="Username" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center"/>
+            <Entry x:Name="txtparola" Placeholder="Parolă" BindingContext="Parola" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center" IsPassword="true"/>
+            <Entry x:Name="txtparolacnf" Placeholder="Confirmare parolă" BindingContext="Parola" PlaceholderColor="#F5B041" TextColor="DarkOrange" VerticalOptions="Center" IsPassword="true"/>
+            <Label FontSize="24"/>
+            <Button Text="Salvează" Clicked="OnButtonSave" TextColor="DarkOrange" BackgroundColor="#4D5656" BorderWidth="1" HorizontalOptions="CenterAndExpand" CornerRadius="10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
