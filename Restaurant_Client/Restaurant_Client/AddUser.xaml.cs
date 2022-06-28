@@ -29,9 +29,32 @@ namespace Restaurant_Client
                     Username = txtusr.Text,
                     Cli_ID = n
                 };
-                await App.Database.SaveUserAsync(user);
-                await Navigation.PopToRootAsync();
-                await DisplayAlert("URAA", user.ID.ToString(), "OK");
+                var ok = true;
+                if (txtmail.Text.IndexOf('@') == -1)
+                {
+                    await DisplayAlert("Mail", "Utilizati o adresa de mail conforma", "ok");
+                    ok = false;
+                }
+                List<User> U = await App.Database.GetUsersAsync();
+                foreach (User u in U)
+                {
+                    if (u.Username == txtusr.Text || u.Mail==txtmail.Text)
+                    {
+                        ok = false;
+                        await DisplayAlert("User", "Userul este deja utilizat. Alegeti altul!", "ok");
+                    }
+                }
+                if(txtparola.Text != txtparolacnf.Text)
+                {
+                    await DisplayAlert("Parola", "Parola nu corespune. Reincercati!", "ok");
+                    ok = false;
+                }
+                if (ok)
+                {
+                    await App.Database.SaveUserAsync(user);
+                    await Navigation.PopToRootAsync();
+                    await DisplayAlert("User", "S-a inregistrat!", "OK");
+                }
             }
             catch (Exception ex)
             {

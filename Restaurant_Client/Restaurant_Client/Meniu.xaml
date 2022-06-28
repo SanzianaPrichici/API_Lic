@@ -17,7 +17,6 @@
                             <StackLayout>
                                 <Label Text="{Binding Nume}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" TextColor="DarkOrange"/>
                                 <Label Text="{Binding Durata}" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" />
-                                <Label Text="{Binding InStoc}" HorizontalOptions="Center" />
                                 <Label Text="{Binding Pret}" HorizontalOptions="Center" />
                                 <Label Text="Conține alergeni" HorizontalOptions="Center" FontSize="10" VerticalOptions="End" TextColor="red"/>
                             </StackLayout>

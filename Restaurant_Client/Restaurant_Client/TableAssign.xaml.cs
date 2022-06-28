@@ -77,7 +77,6 @@ namespace Restaurant_Client
             await App.Database.SaveTable(m);
             await Navigation.PushAsync(new Meniu());
             Navigation.RemovePage(this);
-
         }
     }
 }

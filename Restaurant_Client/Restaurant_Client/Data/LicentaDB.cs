@@ -90,9 +90,9 @@ namespace Restaurant_Client.Data
         {
             return restService.SaveMasaAsync(m, isNewItem);
         }
-        public Task DeleteRezAsync(Rezervare item)
+        public Task DeleteRezAsync(int id)
         {
-            return restService.DeleteRezAsync(item.ID);
+            return restService.DeleteRezAsync(id);
         }
         public Task<List<Produs_cos>> GetCos(int id)
         {

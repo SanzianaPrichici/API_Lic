@@ -2,16 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Restaurant_Client.CosComanda" NavigationPage.HasNavigationBar="False" BackgroundColor="#839192">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="timp" FontSize="24" HorizontalTextAlignment="Center" TextColor="#283747"/>
-            <ListView x:Name="listView" Margin="20">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell x:Name="cell" Text="{Binding Denumire}" TextColor="#283747" DetailColor="DarkOrange"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView><TableView><TableRoot><TableSection></TableSection></TableRoot></TableView>
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Text="Deconectare" Clicked="Logout"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Label x:Name="timp" FontSize="24" HorizontalTextAlignment="Center" TextColor="#283747" Text="Aveți de plătit:"/>
+        <Label x:Name="minute" FontSize="20" HorizontalTextAlignment="Center" TextColor="#283747"/>
+        <ListView x:Name="listView" Margin="20" ItemSelected="Afisarebuton">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell x:Name="cell" Text="{Binding Denumire}" TextColor="#283747" DetailColor="DarkOrange"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TableView>
+            <TableRoot>
+                <TableSection></TableSection>
+            </TableRoot>
+        </TableView>
+        <Button  x:Name="stg" IsVisible="false" Text="Stergere produs" Clicked="Stergere"/>
+    </StackLayout>
 </ContentPage>

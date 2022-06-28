@@ -536,7 +536,7 @@ namespace Restaurant_Client.Data
         }
         public async Task DeleteRezAsync(int id)
         {
-            Uri uri = new Uri(string.Format(RestUrlREZ, id));
+            Uri uri = new Uri(RestUrlREZ+ id.ToString());
             try
             {
                 HttpResponseMessage response = await client.DeleteAsync(uri);
